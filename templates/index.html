@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>MaternAI – Your Maternal Health Companion</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+	<header>
+		<div class="header">
+			<img src="{{ url_for('static', filename='images/logo.png') }}" class="logo" alt="MaternAI Logo" />
+			<div class="header-right">
+				<a id="home" class="active" href="#home">Home</a>
+				<a href="{{ url_for('preprocess') }}">Pre-Process</a>
+				<a href="{{ url_for('visualizations') }}">Visualizations</a>
+				<a href="{{ url_for('retrain') }}">Re-Train</a>
+				<a href="{{ url_for('predict') }}">Predict</a>
+			</div>
+		</div>
+	</header>
+
+	<div class="container1">
+		<img src="{{ url_for('static', filename='images/pregnant_mother.jpg') }}" class="landing" alt="Happy Pregnant Mother" />
+	</div>
+
+	<div class="containercontent">
+		<h2 class="headingtitle">Welcome to MaternAI – Your Maternal Health Companion</h2>
+		<h2 class="welcometitle">Empowering Mothers with Knowledge & Peace of Mind</h2>
+		<p class="content">
+			At MaternAI, we are committed to ensuring safe and informed pregnancies.
+			Our platform uses advanced data analytics and machine learning to assess maternal health risks,
+			allowing expectant mothers to take proactive steps for a healthier journey.
+		</p>
+	</div>
+
+	<div class="contenthow">
+		<h2 class="headingtitle">💡 What We Offer:</h2>
+		<p class="paragraph">
+			<img src="{{ url_for('static', filename='icons/risk_assessment.png') }}" alt="Risk Assessment Icon" class="icon" />
+			<strong>Risk Assessment</strong> – Enter your health data and get an instant risk evaluation.<br>
+			<img src="{{ url_for('static', filename='icons/insights_visualizations.png') }}" alt="Insights & Visualizations Icon" class="icon" />
+			<strong>Insights & Visualizations</strong> – Understand trends in maternal health and potential risk factors.<br>
+			<img src="{{ url_for('static', filename='icons/proactive_monitoring.png') }}" alt="Proactive Monitoring Icon" class="icon" />
+			<strong>Proactive Monitoring</strong> – Track vital health indicators to stay ahead of complications.<br>
+			<img src="{{ url_for('static', filename='icons/data_driven_care.png') }}" alt="Data-Driven Care Icon" class="icon" />
+			<strong>Data-Driven Care</strong> – Empowering mothers and healthcare providers with reliable predictions.<br>
+		</p>
+
+		<h2 class="headingtitle">💙 How It Works?</h2>
+		<p class="paragraph">
+			1️⃣ Check your vital information (e.g., blood pressure, body temperature, glucose levels).<br>
+			2️⃣ Enter the details in our <strong>Predict</strong> section.<br>
+			3️⃣ Get instant insights on whether your pregnancy risk is <strong>low, mid, or high</strong>.<br>
+			4️⃣ For <strong>high-risk</strong> cases, seek immediate medical attention.<br>
+			5️⃣ Keep monitoring your vitals <strong>weekly</strong> to ensure a safe pregnancy.<br>
+		</p>
+	</div>
+
+	<h1 class="access-h1">💡 Why Choose MaternAI?</h1>
+	<div id="services" class="container-fluid">
+		<div class="row">
+			<div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
+				<img class="img-fluid img-log" src="{{ url_for('static', filename='icons/accurate_predictions.png') }}" alt="Accurate Predictions Icon" />
+				<div class="content-access">
+					<h3>✨ Accurate Predictions</h3>
+					<p>AI-powered insights trained on real maternal health data.</p>
+				</div>
+			</div>
+			<div class="col-md-6 col-lg-4 img-acess wow fadeInUp" data-wow-delay="0.1s">
+				<img class="img-fluid" src="{{ url_for('static', filename='icons/easy_interface.png') }}" alt="Easy-to-Use Interface Icon" />
+				<div class="content-access">
+					<h3>🩺 Easy-to-Use Interface</h3>
+					<p>A simple, user-friendly experience designed for expectant mothers.</p>
+				</div>
+			</div>
+			<div class="col-md-6 col-lg-4 img-acess wow fadeInUp" data-wow-delay="0.1s">
+				<img class="img-fluid" src="{{ url_for('static', filename='icons/proactive_care.png') }}" alt="Proactive Maternal Care Icon" />
+				<div class="content-access">
+					<h3>👩‍⚕️ Proactive Maternal Care</h3>
+					<p>Stay informed and take action when it matters most.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer class="footer">
+		<div class="copyright">
+			<img src="{{ url_for('static', filename='images/logo.png') }}" alt="MaternAI Logo" />
+			<h2>&copy; 2025 | MaternAI: Your Partner in Maternal Health</h2>
+		</div>
+		<div class="else">
+			<ul>
+				<li><a class="active" href="#home">Home</a></li>
+				<li><a href="{{ url_for('preprocess') }}">Pre-process</a></li>
+				<li><a href="{{ url_for('visualizations') }}">Visualizations</a></li>
+				<li><a href="{{ url_for('retrain') }}">Re-train</a></li>
+				<li><a href="{{ url_for('predict') }}">Predict</a></li>
+			</ul>
+		</div>
+	</footer>
+</body>
+</html>

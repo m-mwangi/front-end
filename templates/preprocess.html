@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Pre-Process - Maternal Health Risk Prediction</title>
+		<link
+			rel="stylesheet"
+			href="{{ url_for('static', filename='style.css') }}" />
+		<link
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+			rel="stylesheet" />
+		<link
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+			rel="stylesheet" />
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+	</head>
+	<body>
+		<!-- Header -->
+		<header>
+			<div class="header">
+				<img
+					src="{{ url_for('static', filename='images/logo.png') }}"
+					class="logo"
+					alt="Logo" />
+				<div class="header-right">
+					<a id="home" href="/">Home</a>
+
+					<a class="active" href="/preprocess">Pre-Process</a>
+					<a href="/visualizations">Visualizations</a>
+					<a href="/retrain">Re-Train</a>
+					<a href="/predict">Predict</a>
+				</div>
+			</div>
+		</header>
+
+		<!-- About the Data Section -->
+		<section class="about-data">
+			<div class="container mt-5">
+				<h2 class="section-title text-center">About the Dataset</h2>
+				<p class="text-center mt-3">
+					The dataset used for maternal health risk prediction consists of
+					<strong>6 vital health features</strong> and a target label. These
+					features include:
+					<strong
+						>Blood Pressure (Diastolic and Systolic), Body Temperature, Glucose
+						Level, Pulse Rate, Age</strong
+					>, and <strong>Risk Level</strong>. The target label categorizes risks
+					into three classes: <strong style="color: red">High Risk</strong>,
+					<strong style="color: orange">Mid Risk</strong>, and
+					<strong style="color: green">Low Risk</strong>.
+				</p>
+				<p class="text-center">
+					The aim is to predict maternal risk as either low, mid, or high risk.
+				</p>
+			</div>
+		</section>
+		<div class="fact-table">
+			<div class="fact-row">
+				<div class="fact-cell wow fadeInUp animated" data-wow-delay=".1s">
+					<div class="single-fact-counter-inner">
+						<div class="single-fact-counter-icon">
+							<span class="fas fa-database"></span>
+							<!-- Database icon -->
+						</div>
+						<div class="outer-box">
+							<div class="count-outer count-box">
+								<span class="count-text"><span>1014</span></span>
+							</div>
+							<div class="title">
+								<p>Rows</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="fact-cell wow fadeInUp animated" data-wow-delay=".2s">
+					<div class="single-fact-counter-inner">
+						<div class="single-fact-counter-icon">
+							<span class="fas fa-chart-bar"></span>
+							<!-- Chart icon -->
+						</div>
+						<div class="outer-box">
+							<div class="count-outer count-box">
+								<span class="count-text"><span>0</span></span>
+							</div>
+							<div class="title">
+								<p>Missing Rows</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="fact-row">
+				<div class="fact-cell wow fadeInUp animated" data-wow-delay=".3s">
+					<div class="single-fact-counter-inner">
+						<div class="single-fact-counter-icon">
+							<span class="fas fa-columns"></span>
+							<!-- Columns icon -->
+						</div>
+						<div class="outer-box">
+							<div class="count-outer count-box">
+								<span class="count-text"><span>7</span></span>
+							</div>
+							<div class="title">
+								<p>Columns</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="fact-cell wow fadeInUp animated" data-wow-delay=".4s">
+					<div class="single-fact-counter-inner">
+						<div class="single-fact-counter-icon">
+							<span class="fas fa-exclamation-circle"></span>
+							<!-- Outlier icon -->
+						</div>
+						<div class="outer-box">
+							<div class="count-outer count-box">
+								<span class="count-text"><span>433</span></span>
+							</div>
+							<div class="title">
+								<p>Outliers</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Steps for Preprocessing Section -->
+		<section class="preprocessing-steps bg-light py-5">
+			<div class="container">
+				<h2 class="section-title text-center">Steps for Preprocessing</h2>
+				<div class="row mt-4">
+					<!-- Step 1 -->
+					<div class="col-md-6 d-flex align-items-center mb-4">
+						<img
+							src="{{ url_for('static', filename='images/loading.png') }}"
+							class="img-fluid step-image"
+							alt="Data Loading" />
+					</div>
+					<div class="col-md-6">
+						<h3>1. Data Loading</h3>
+						<p>- The dataset is loaded to Pandas dataframe.</p>
+						<p>
+							- This is done by reading the csv allowing us to easily manipulate
+							the data.
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<!-- Step 2 -->
+					<div class="col-md-6 d-flex align-items-center order-md-2 mb-4">
+						<img
+							src="{{ url_for('static', filename='images/statistics.png') }}"
+							class="img-fluid step-image"
+							alt="Inspect Data" />
+					</div>
+					<div class="col-md-6 order-md-1">
+						<h3>2. Inspecting Data</h3>
+						<p>
+							We inspect the dataset to understand the distributions, missing
+							values, and general structure of the data. This includes using
+							statistical summaries and visualization tools.
+						</p>
+						<p>
+							- From the graph, we can pick out for example that the age
+							distribution is skewed towards younger individuals.
+						</p>
+						<p>
+							- <strong>Body Temp:</strong> This is generally consistent with a
+							normal of 98.6 degrees F but shows some cases of fever of 103
+							degrees.
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<!-- Step 3 -->
+					<div class="col-md-6 d-flex align-items-center mb-4">
+						<img
+							src="{{ url_for('static', filename='images/encoding.png') }}"
+							class="img-fluid step-image"
+							alt="Encoding" />
+					</div>
+					<div class="col-md-6">
+						<h3>3. Encoding Categorical Variables</h3>
+						<p>
+							Categorical variable(risklevel) is encoded into numerical
+							representations using label encoding for it to be fit for
+							training.
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<!-- Step 4 -->
+					<div class="col-md-6 d-flex align-items-center order-md-2 mb-4">
+						<!-- Carousel for Outliers and Capping Images -->
+						<div
+							id="outliersCarousel"
+							class="carousel slide"
+							data-bs-ride="carousel">
+							<div class="carousel-inner">
+								<!-- First Slide: Outliers -->
+								<div class="carousel-item active">
+									<img
+										src="{{ url_for('static', filename='images/outliers.png') }}"
+										class="d-block w-100 step-image"
+										alt="Check for Outliers" />
+								</div>
+								<!-- Second Slide: Capping -->
+								<div class="carousel-item">
+									<img
+										src="{{ url_for('static', filename='images/capoutliers.png') }}"
+										class="d-block w-100 step-image"
+										alt="Capping Outliers" />
+								</div>
+							</div>
+							<!-- Carousel Controls -->
+							<button
+								class="carousel-control-prev"
+								type="button"
+								data-bs-target="#outliersCarousel"
+								data-bs-slide="prev">
+								<span
+									class="carousel-control-prev-icon"
+									aria-hidden="true"></span>
+								<span class="visually-hidden">Previous</span>
+							</button>
+							<button
+								class="carousel-control-next"
+								type="button"
+								data-bs-target="#outliersCarousel"
+								data-bs-slide="next">
+								<span
+									class="carousel-control-next-icon"
+									aria-hidden="true"></span>
+								<span class="visually-hidden">Next</span>
+							</button>
+						</div>
+					</div>
+					<div class="col-md-6 order-md-1">
+						<h3>4. Checking for Outliers</h3>
+						<p>- Using boxplots, we identify the outliers.</p>
+						<p>
+							- We then cap them to ensure the data is robust and avoids skewing
+							the model's performance.
+						</p>
+					</div>
+				</div>
+
+				<div class="row">
+					<!-- Step 5 -->
+					<div class="col-md-6 d-flex align-items-center mb-4">
+						<img
+							src="{{ url_for('static', filename='images/scaling.png') }}"
+							class="img-fluid step-image"
+							alt="Scaling" />
+					</div>
+					<div class="col-md-6">
+						<h3>5. Scaling the Data</h3>
+						<p>
+							To normalize feature ranges, the scaling technique Standard
+							Scaling was applied. This ensures uniformity across all features.
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<!-- Step 6 -->
+					<div class="col-md-6 d-flex align-items-center order-md-2 mb-4">
+						<img
+							src="{{ url_for('static', filename='images/smote.png') }}"
+							class="img-fluid step-image"
+							alt="Balancing Using SMOTE" />
+					</div>
+					<div class="col-md-6 order-md-1">
+						<h3>6. Balancing the Dataset</h3>
+						<p>- There was an imbalance in the classes.</p>
+						<p>
+							- This was addressed using the Synthetic Minority Oversampling
+							Technique (SMOTE), generating synthetic samples for
+							underrepresented classes.
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<!-- Step 7 -->
+					<div class="col-md-6 d-flex align-items-center mb-4">
+						<img
+							src="{{ url_for('static', filename='images/split.png') }}"
+							class="img-fluid step-image"
+							alt="Split Data" />
+					</div>
+					<div class="col-md-6">
+						<h3>7. Splitting the Data</h3>
+						<p>
+							The df is split into training, validation, and testing sets to
+							evaluate the model's performance on unseen data.
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<!-- Step 8 -->
+					<div class="col-md-6 d-flex align-items-center order-md-2 mb-4">
+						<img
+							src="{{ url_for('static', filename='images/ranking.png') }}"
+							class="img-fluid step-image"
+							alt="Feature Selection" />
+					</div>
+					<div class="col-md-6 order-md-1">
+						<h3>8. Feature Selection</h3>
+						<p>
+							Features were ranked based on importance and selected only those
+							that significantly contribute to the model's predictions.
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<!-- Step 9 -->
+					<div class="col-md-6 d-flex align-items-center mb-4">
+						<img
+							src="{{ url_for('static', filename='images/correlation.png') }}"
+							class="img-fluid step-image"
+							alt="Save Scaler" />
+					</div>
+					<div class="col-md-6">
+						<h3>9. Saving the Scaler and Sets</h3>
+						<p>
+							The preprocessing pipeline, including scalers and data splits, is
+							saved for reproducibility and consistency during model training
+							and deployment.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Footer -->
+		<footer class="footer">
+			<div class="copyright">
+				<img src="{{ url_for('static', filename='images/logo.png') }}" alt="" />
+				<h2>&copy; 2024 | NURTURE: Your Partner in Maternal Health</h2>
+			</div>
+			<div class="else">
+				<ul>
+					<li><a href="/">Home</a></li>
+					<li>
+						<a class="active" href="{{ url_for('preprocess') }}">Pre-process</a>
+					</li>
+					<li>
+					<a href="{{ url_for('visualizations') }}">Visualizations</a>
+                    </li>
+					<li><a href="{{ url_for('retrain') }}">Re-train</a></li>
+					<li><a href="{{ url_for('predict') }}">Predict</a></li>
+				</ul>
+			</div>
+		</footer>
+	</body>
+</html>
