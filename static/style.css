@@ -19,7 +19,7 @@ body {
 header {
     width: 100%;
     padding: 20px;
-    background-color: #ffffff;
+    background-color: #001f3f; /* Changed from white to light gray */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -31,7 +31,9 @@ header {
 }
 
 .logo {
-    width: 120px;
+    width: 100px; /* Reduced size */
+    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.2)); /* Add a drop shadow */
+    opacity: 0.9; /* Slightly reduce opacity for blending effect */
 }
 
 .header-right a {
@@ -52,16 +54,75 @@ header {
     color: #ff9a9e; /* Light pink */
 }
 
-/* Hero Section */
+/* 🔹 Hero Section - Make Image Cover the Full Screen */
 .container1 img.landing {
     width: 100%;
-    height: auto; /* Adjusted for better responsiveness */
+    height: 100vh; /* Full-screen height */
+    object-fit: cover; /* Ensures full coverage without stretching */
+    display: block;
+}
+
+/* 🔹 What We Offer - Resize Icons */
+.icon {
+    width: 90px; /* Standardized size for all icons */
+    height: 90px; 
+    object-fit: contain; /* Ensures no distortion */
+    margin-bottom: 15px;
+}
+
+/* 🔹 Align Text & Images in What We Offer */
+#services .row {
+    display: flex;
+    justify-content: space-between; /* Space out sections evenly */
+    align-items: center; /* Align images and text properly */
+    flex-wrap: wrap; /* Ensure responsiveness */
+    text-align: center;
+}
+
+#services .col-md-3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 250px; /* Ensures uniform section height */
+}
+
+/* 🔹 Standardize All Images */
+#services .col-md-3 img {
+    width: 80px; /* Ensures equal width */
+    height: auto; /* Maintains aspect ratio */
+    margin-bottom: 10px; /* Adds spacing */
+}
+
+/* 🔹 Improve Responsiveness for Smaller Screens */
+@media (max-width: 768px) {
+    .container1 img.landing {
+        height: 50vh; /* Reduce image height for smaller screens */
+    }
+
+    #services .row {
+        flex-direction: column; /* Stack items for mobile */
+    }
+
+    .icon {
+        width: 70px; /* Adjust icon size for smaller screens */
+        height: 70px;
+    }
+}
+
+
+/* Hero Section */
+.container1 img.landing {
+    width: 100%; /* Full width */
+    max-height: 65vh; /* Limit the height to 50% of the viewport height */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover; /* Ensure the image covers the area without distortion */
 }
 
 /* Heading styles */
 .headingtitle {
     text-align: center;
-    font-size: 2rem;
+    font-size: 2.5rem; /* Increased font size for better visibility */
     font-weight: bold;
     color: #3f51b5; /* Indigo */
     margin-bottom: 10px;
@@ -132,7 +193,7 @@ header {
 }
 
 #services .col-md-6 img {
-    width: 80%;
+    width: 70%; /* Reduced size */
     height: auto;
     margin-bottom: 20px;
 }
@@ -145,13 +206,13 @@ header {
 
 #services .content-access p {
     font-size: 1rem;
-    color: #333; /* Dark gray */
+    color: #001f3f; /* Dark gray */
     line-height: 1.6;
 }
 
 /* Footer */
 footer {
-    background-color: #3f51b5; /* Indigo */
+    background-color: #001f3f; /* Indigo */
     color: #fff;
     padding: 20px 0;
     text-align: center;
@@ -703,7 +764,7 @@ footer .else ul li a:hover {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin: 15px;
-    width: 300px;
+    width: 280px; /* Reduced width */
     text-align: center;
     padding: 20px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -716,7 +777,7 @@ footer .else ul li a:hover {
     border-radius: 10px;
     width: 100%;
     height: auto;
-    max-height: 200px;
+    max-height: 150px; /* Reduced max height */
     object-fit: contain;
 }
 .card img:hover::after {
@@ -769,7 +830,7 @@ footer .else ul li a:hover {
 
 .close-btn {
     position: absolute;
- top: 10px;
+    top: 10px;
     right: 20px;
     font-size: 1.5rem;
     cursor: pointer;
