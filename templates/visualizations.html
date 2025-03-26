@@ -33,15 +33,17 @@
 			</div>
 		</header>
 		<div class="heading">
-			<h1>Exploring Maternal Health Risk Factors</h1>
-			<p>Dive into the data to uncover insights into maternal health risks.</p>
+			<h1>Uncovering Maternal Health Risks</h1>
+			<p>Explore key data insights revealing the hidden patterns behind maternal health challenges.</p>
+                        <p>Click below to get started!</p>
+                        <i class="fas fa-chevron-down arrow-icon"></i>
 		</div>
 
 		<div class="cards-container">
 			<!-- Card 1 -->
 			<div class="card" onclick="openModal('modal1')">
 				<img
-					src="{{ url_for('static', filename='images/age_distribution.png') }}"
+					src="{{ url_for('static', filename='images/age.png') }}"
 					alt="Age Distribution"
 					data-tooltip="Age Distribution Across Risk Levels" />
 				<h3>Age Distribution</h3>
@@ -54,7 +56,7 @@
 			<!-- Card 2 -->
 			<div class="card" onclick="openModal('modal2')">
 				<img
-					src="{{ url_for('static', filename='images/blood_sugar_boxplot.png') }}"
+					src="{{ url_for('static', filename='images/bloodsugar.png') }}"
 					alt="Blood Sugar Levels"
 					data-tooltip="Blood Sugar Levels in Maternal Health" />
 				<h3>Blood Sugar Levels</h3>
@@ -67,13 +69,13 @@
 			<!-- Card 3 -->
 			<div class="card" onclick="openModal('modal3')">
 				<img
-					src="{{ url_for('static', filename='images/blood_pressure_correlation.png') }}"
+					src="{{ url_for('static', filename='images/bloodpressure.png') }}"
 					alt="Blood Pressure"
 					data-tooltip="Blood Pressure and Risk Correlation" />
 				<h3>Blood Pressure</h3>
 				<p>
-					This plot highlights how higher systolic blood pressure is strongly
-					associated with elevated maternal health risks.
+					This plot shows how higher systolic blood pressure is linked
+					to increased maternal health risks.
 				</p>
 			</div>
 		</div>
@@ -84,12 +86,12 @@
 				<span class="close-btn" onclick="closeModal('modal1')">&times;</span>
 
 				<img
-					src="{{ url_for('static', filename='images/age_distribution.png') }}"
+					src="{{ url_for('static', filename='images/age.png') }}"
 					alt="Age Distribution" />
 				<h4>Insights:</h4>
 				<p>
-					Younger mothers (20–30) have the lowest risks, but risks escalate with
-					age beyond 35, possibly due to complications associated with older
+					Younger mothers (10–30) have the lowest risks, but risks escalate with
+					age beyond 30, possibly due to complications associated with older
 					pregnancies.
 				</p>
 			</div>
@@ -101,7 +103,7 @@
 				<span class="close-btn" onclick="closeModal('modal2')">&times;</span>
 
 				<img
-					src="{{ url_for('static', filename='images/blood_sugar_boxplot.png') }}"
+					src="{{ url_for('static', filename='images/bloodsugar.png') }}"
 					alt="Blood Sugar Levels" />
 				<h4>Insights:</h4>
 				<p>
@@ -120,16 +122,16 @@
 				<span class="close-btn" onclick="closeModal('modal3')">&times;</span>
 
 				<img
-					src="{{ url_for('static', filename='images/blood_pressure_correlation.png') }}"
+					src="{{ url_for('static', filename='images/bloodpressure.png') }}"
 					alt="Blood Pressure" />
 				<h4>Insights:</h4>
 				<p>
 					Each dot represents a patient,
-					categorized by risk levels: low, mid, and high risk.
+					categorized by following risk levels: low(0), mid(1), and high risk(2).
                     <ul class="visuals">
-                    <li>Patients with higher systolic blood pressure values (above 140 mmHg) are predominantly in the high-risk category.</li>
-                    <li>Mid-risk patients mostly fall within the systolic blood pressure range of 100–140 mmHg.</li>
-                    <li>Low-risk patients tend to have systolic blood pressure under 120 mmHg but not at the extreme lower range.</li>
+                    <li>Patients with higher systolic blood pressure values (above 110 mmHg) are predominantly in the high-risk category. This suggests that hypertension is a key risk factor for maternal complications.</li>
+                    <li>Mid-risk patients mostly fall within the systolic blood pressure range of 85–130 mmHg. This implies that moderate BP values alone are not enough to determine risk, therefore other factors should be inspected too.</li>
+                    <li>Low-risk patients tend to have systolic blood pressure under 100 mmHg indicating normal BP levels.</li>
                 </ul>
 				</p>
 			</div>
@@ -137,7 +139,7 @@
 		<footer class="footer">
 			<div class="copyright">
 				<img src="{{ url_for('static', filename='images/logo.png') }}" alt="" />
-				<h2>&copy; 2024 | NURTURE: Your Partner in Maternal Health</h2>
+				<h2>&copy; 2025 | MaternAI: Smarter Maternal Health</h2>
 			</div>
 			<div class="else">
 				<ul>
