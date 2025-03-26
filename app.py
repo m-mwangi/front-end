@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
+FASTAPI_URL = "https://matern-ai-1.onrender.com/predict"
 
 @app.route('/')
 def index():
