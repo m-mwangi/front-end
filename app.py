@@ -9,6 +9,7 @@ app.secret_key = "your_secret_key"  # Required for flash messages
 FASTAPI_PREDICT_URL = "https://matern-ai-1.onrender.com/predict"
 FASTAPI_TRAIN_URL = "https://matern-ai-1.onrender.com/retrain"
 RENDER_URL = "https://matern-ai-1.onrender.com"
+
 # Ensure upload directory exists
 if not os.path.exists(app.config["UPLOAD_FOLDER"]):
     os.makedirs(app.config["UPLOAD_FOLDER"])
@@ -20,7 +21,7 @@ def allowed_file(filename):
 def index():
     return render_template('index.html')
 
-@app.route('/predict', methods=['GET', 'POST'])
+@app.route('/predict', methods = ['GET', 'POST'])
 def predict():
     prediction_message = None
     form_data = {}
@@ -40,10 +41,10 @@ def predict():
             }
 
             # Send data as QUERY PARAMETERS to FastAPI
-            response = requests.post(FASTAPI_PREDICT_URL, params=input_data)
+            response = requests.post(FASTAPI_PREDICT_URL, params = input_data)
 
             print(f"API Response Status: {response.status_code}")
-            print(f"API Response Body: {response.text}")  # Debugging output
+            print(f"API Response Body: {response.text}") 
 
             if response.status_code == 200:
                 prediction_result = response.json().get("Predicted Risk Level", "Unknown result")
@@ -56,7 +57,7 @@ def predict():
         except Exception as e:
             prediction_message = f"Error: {str(e)}"
 
-    return render_template('predict.html', form_data=form_data, prediction_message=prediction_message)
+    return render_template('predict.html', form_data = form_data, prediction_message = prediction_message)
 
 @app.route('/preprocess')
 def preprocess():
@@ -66,7 +67,7 @@ def preprocess():
 def visualizations():
     return render_template('visualizations.html')
 
-@app.route('/upload-data', methods=['POST'])
+@app.route('/upload-data', methods = ['POST'])
 def upload_data():
     if 'file' not in request.files:
         return jsonify({"detail": "No file part"}), 400
@@ -79,7 +80,7 @@ def upload_data():
     print(f"File content type: {file.content_type}")
 
     # Send the file to FastAPI backend
-    response = requests.post(f'{RENDER_URL}/upload/', files={'file': (file.filename, file.stream, file.content_type)})
+    response = requests.post(f'{RENDER_URL}/upload/', files = {'file': (file.filename, file.stream, file.content_type)})
 
 
     if response.status_code == 200:
@@ -88,7 +89,7 @@ def upload_data():
     else:
         return jsonify(response.json()), response.status_code
 
-@app.route('/retrain', methods=['GET', 'POST'])
+@app.route('/retrain', methods = ['GET', 'POST'])
 def retrain():
     if request.method == 'GET':
         return render_template('retrain.html')
@@ -108,11 +109,11 @@ def retrain():
             files = {'file': (file.filename, file.stream, file.content_type)}
 
             # Step 1: Upload the file first
-            upload_response = requests.post(f'{RENDER_URL}/upload/', files=files)
+            upload_response = requests.post(f'{RENDER_URL}/upload/', files = files)
             
             if upload_response.status_code == 200:
                 # Step 2: Call retraining after successful upload
-                retrain_response = requests.post(f'{RENDER_URL}/retrain/', json={"file_path": "new_data.csv"})
+                retrain_response = requests.post(f'{RENDER_URL}/retrain/', json = {"file_path": "new_data.csv"})
                 retrain_response.raise_for_status()
                 
                 return jsonify(retrain_response.json())
